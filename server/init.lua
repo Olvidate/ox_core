@@ -19,6 +19,7 @@ if GetExport('npwd') then
 end
 
 require 'server.utils'
+require 'server.accounts.main'
 require 'server.groups.main'
 require 'server.status.main'
 require 'server.license.main'
