@@ -177,21 +177,19 @@ VALUES
   ('weapon', 'Weapon License'),
   ('driver', "Driver's License");
 
-CREATE TABLE
-  `accounts` (
-    `id` INT (10) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `accountId` UUID NOT NULL DEFAULT uuid(),
-    `label` VARCHAR(50) NULL DEFAULT NULL,
-    `owner` INT (10) UNSIGNED NULL DEFAULT NULL,
-    `group` VARCHAR(20) NULL DEFAULT NULL,
-    `balance` INT (11) NOT NULL DEFAULT '0',
-    `isDefault` TINYINT (1) NOT NULL DEFAULT 0,
-    PRIMARY KEY (`id`) USING BTREE,
-    INDEX `FK_accounts_characters` (`owner`) USING BTREE,
-    INDEX `FK_accounts_ox_groups` (`group`) USING BTREE,
+CREATE TABLE `accounts`
+(
+    `id` INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    `accountId` INT(6) UNSIGNED NOT NULL,
+    `label` VARCHAR(50) NOT NULL,
+    `owner` INT UNSIGNED NULL,
+    `group` VARCHAR(20) NULL,
+    `balance` INT DEFAULT 0 NOT NULL,
+    `isDefault` TINYINT(1) DEFAULT 0 NOT NULL,
+    CONSTRAINT `accounts_pk` UNIQUE (`accountId`),
     CONSTRAINT `FK_accounts_characters` FOREIGN KEY (`owner`) REFERENCES `characters` (`charId`) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT `FK_accounts_ox_groups` FOREIGN KEY (`group`) REFERENCES `ox_groups` (`name`) ON UPDATE CASCADE ON DELETE CASCADE
-  );
+);
 
 INSERT INTO
   `accounts` (
