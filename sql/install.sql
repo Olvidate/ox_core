@@ -191,27 +191,6 @@ CREATE TABLE `accounts`
     CONSTRAINT `FK_accounts_ox_groups` FOREIGN KEY (`group`) REFERENCES `ox_groups` (`name`) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-INSERT INTO
-  `accounts` (
-    `id`,
-    `accountId`,
-    `label`,
-    `owner`,
-    `group`,
-    `balance`,
-    `isDefault`
-  )
-VALUES
-  (
-    1,
-    (UUID()),
-    NULL,
-    NULL,
-    'police',
-    0,
-    1
-  );
-
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
