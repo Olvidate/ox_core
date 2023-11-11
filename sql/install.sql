@@ -179,17 +179,15 @@ VALUES
 
 CREATE TABLE `accounts`
 (
-    `id` INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    `accountId` INT(6) UNSIGNED NOT NULL,
-    `label` VARCHAR(50) NOT NULL,
-    `owner` INT UNSIGNED NULL,
-    `group` VARCHAR(20) NULL,
-    `balance` INT DEFAULT 0 NOT NULL,
-    `isDefault` TINYINT(1) DEFAULT 0 NOT NULL,
-    CONSTRAINT `accounts_pk` UNIQUE (`accountId`),
-    CONSTRAINT `FK_accounts_characters` FOREIGN KEY (`owner`) REFERENCES `characters` (`charId`) ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT `FK_accounts_ox_groups` FOREIGN KEY (`group`) REFERENCES `ox_groups` (`name`) ON UPDATE CASCADE ON DELETE CASCADE
-);
+  `id` INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  `label` VARCHAR(50) NOT NULL,
+  `owner` INT UNSIGNED NULL,
+  `group` VARCHAR(20) NULL,
+  `balance` INT DEFAULT 0 NOT NULL,
+  `isDefault` TINYINT(1) DEFAULT 0 NOT NULL,
+  CONSTRAINT `FK_accounts_characters` FOREIGN KEY (`owner`) REFERENCES `characters` (`charId`) ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT `FK_accounts_ox_groups` FOREIGN KEY (`group`) REFERENCES `ox_groups` (`name`) ON UPDATE CASCADE ON DELETE CASCADE
+) AUTO_INCREMENT = 100000;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 
